@@ -14,18 +14,22 @@
       <form>
         <div class="form-group">
           <label for="prompt">Enter a prompt:</label>
-          <textarea class="form-control" id="prompt" placeholder="Enter a prompt"></textarea>
+          <textarea class="form-control" id="prompt" height=20% placeholder="Write a haiku about the pain of enduring school."></textarea>
         </div>
         <button type="submit" class="btn btn-primary" id="generate-button">Generate</button>
         <button type="button" class="btn btn-primary d-none" id="please-wait-button" disabled>Please Wait...</button>
+        <button type="button" class="btn btn-secondary" id="clear-button">Clear</button>
       </form>
       <div class="mt-4">
-        <h2>Generated Text:</h2>
+        <h2>Output:</h2>
         <div id="generated-text"></div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
+      $('#clear-button').click(function(event){
+        $('#prompt').val('');
+      });
       $('form').keydown(function(event) {
           if (event.keyCode == 13 && event.ctrlKey) {
               $("form").submit();
@@ -44,7 +48,7 @@
           body: `prompt=${encodeURIComponent(prompt)}`,
         });
         const generatedText = await response.text();
-        $('#generated-text').text(generatedText);
+        $('#generated-text').html(generatedText.replace(/\n/g, "<br>"));
         $('#generate-button').removeClass('d-none');
         $('#please-wait-button').addClass('d-none');
       });
