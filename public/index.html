@@ -2,19 +2,20 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>TotoB12 Gen</title>
+    <title>TotoB12 Gen 1</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/TotoB12/totob12.github.io/main/things/favicon.ico">
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/TotoB12/totob12.github.io/main/things/favicon.ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
   </head>
   <body>
     <div class="container">
       <br>
-      <h1 class="text-center">TotoB12 Gen</h1>
+      <h1 class="text-center">TotoB12 Gen 1</h1>
       <form>
         <div class="form-group">
           <label for="prompt">Enter a prompt:</label>
-          <textarea class="form-control" id="prompt" height=20% placeholder="Write a haiku about the pain of enduring school."></textarea>
+          <textarea class="form-control" id="prompt" maxlength=10000 placeholder="Write a haiku about the pain of enduring school."></textarea>
         </div>
         <button type="submit" class="btn btn-primary" id="generate-button">Generate</button>
         <button type="button" class="btn btn-primary d-none" id="please-wait-button" disabled>Please Wait...</button>
@@ -48,7 +49,7 @@
           body: `prompt=${encodeURIComponent(prompt)}`,
         });
         const generatedText = await response.text();
-        $('#generated-text').html(generatedText.replace(/\n/g, "<br>"));
+        $('#generated-text').css('white-space', 'pre-wrap').text(generatedText);
         $('#generate-button').removeClass('d-none');
         $('#please-wait-button').addClass('d-none');
       });

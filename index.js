@@ -25,9 +25,10 @@ app.post('/generate', async (req, res) => {
     const generatedText = completions.data.choices[0].message.content;
     res.send(generatedText);
     console.log(completions.data.choices[0].message);
+    console.log(completions.data.choices[0].message.content);
   } catch (error) {
     console.log(error);
-    res.status(500).send('An error occurred. Please contact TotoB12.');
+    res.status(500).send('An error occurred, please try again. If the issue persists, please contact TotoB12.');
   }
 });
 
