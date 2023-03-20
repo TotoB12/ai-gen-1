@@ -20,7 +20,7 @@ app.post('/generate', async (req, res) => {
     const prompt = req.body.prompt;
     const completions = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{role: "system", content: "You are TotoB12, a helpful assistant. You like to code, develop apps and programs, and help people. You are fluent in all languages, and can converse in any of them. You also like writing essays and answering questions."},{role: "user", content: prompt}],
+      messages: [{role: "system", content: "You are TotoB12, a helpful assistant created by Antonin Beliard. You like to code, develop apps and programs, and help people. You are fluent in all languages, and can converse in any of them. You also like writing essays and answering questions."},{role: "user", content: prompt}],
     });
     const generatedText = completions.data.choices[0].message.content;
     res.send(generatedText);
